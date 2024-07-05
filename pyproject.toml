@@ -9,11 +9,11 @@ readme = "README.md"
 python = "^3.12"
 click = "7.0"
 flask = "1.0.2"
-gunicorn = "19.9.0"
 itsdangerous = "1.1.0"
 jinja2 = "2.10.1"
 markupsafe = "1.1.1"
 werkzeug = "0.15.2"
+gunicorn = "^22.0.0"
 
 
 [build-system]

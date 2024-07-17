@@ -34,6 +34,36 @@ class User(Resource):
             return {"message": "User created"}, 201
         return {"message": "Password is required"}, 400
 
+    def delete(self, username):
+        """
+        delete a user
+        """
+        user_find = None
+        for user in user_list:
+            if user["username"] == username:
+                user_find = user
+            if user_find:
+                user_list.remove(user_find)
+                return {"message": "User deleted"}
+        return {"message": "User not found"}, 404
+
+    def put(self, username):
+        """
+        update a user
+        """
+        # password = request.json.get("password")
+        user_find = None
+        for user in user_list:
+            if user["username"] == username:
+                user_find = user
+        if user_find:
+            user_list.remove(user_find)
+            password = request.json.get("password")
+            user_find["password"] = password
+            user_list.append(user_find)
+            return {"message": "User updated"}
+        return {"message": "User not found"}, 404
+
 
 api.add_resource(HelloWorld, "/")
 api.add_resource(User, "/user/<string:username>")

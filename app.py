@@ -1,5 +1,5 @@
 from flask import Flask, request
-from flask_restful import Resource, Api
+from flask_restful import Resource, Api, reqparse
 
 app = Flask(__name__)
 api = Api(app)
@@ -26,8 +26,15 @@ class User(Resource):
         """
         create a new user
         """
+        parser = reqparse.RequestParser()
+        parser.add_argument(
+            "password", type=str, required=True, help="Password required"
+        )
+        data = parser.parse_args()
+        for user in user_list:
+            if user["username"] == username:
+                return {"message": "User already exists"}, 400
         password = request.json.get("password")
-        print(password)
         if password:
             user = {"username": username, "password": password}
             user_list.append(user)
@@ -65,8 +72,17 @@ class User(Resource):
         return {"message": "User not found"}, 404
 
 
+class UserList(Resource):
+    def get(self):
+        """
+        get all users
+        """
+        return user_list
+
+
 api.add_resource(HelloWorld, "/")
 api.add_resource(User, "/user/<string:username>")
+api.add_resource(UserList, "/users")
 
 
 if __name__ == "__main__":

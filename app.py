@@ -1,8 +1,8 @@
 from flask import Flask, request
 from flask_restful import Api, Resource
 
-from resource.hello import HelloWorld
-from resource.user import User, UserList
+from rest_demo.resource.hello import HelloWorld
+from rest_demo.resource.user import User, UserList
 
 
 # class HelloWorld(Resource):

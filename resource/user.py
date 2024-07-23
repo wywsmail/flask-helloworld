@@ -25,6 +25,7 @@ class User(Resource):
     parser.add_argument(
         "password", type=min_length_str(5), required=True, help="{error_msg}"
     )
+    parser.add_argument("email", type=str, required=False, help="{error_msg}")
 
     def get(self, username):
         """
@@ -40,12 +41,17 @@ class User(Resource):
         create a new user
         """
         data = User.parser.parse_args()
-        user = {"username": username, "password": data["password"]}
-        for user in user_list:
-            if user["username"] == username:
+        user = {
+            "username": username,
+            "password": data["password"],
+            "email": data["email"],
+        }
+        for u in user_list:
+            if u["username"] == username:
                 return {"message": "User already exists"}, 400
+
         user_list.append(user)
-        return {"message": "User created"}, 201
+        return {"message": "User created", "data": user}, 201
 
     def delete(self, username):
         """
@@ -73,7 +79,9 @@ class User(Resource):
             data = User.parser.parse_args()
             user_list.remove(user_find)
             password = data["password"]
+            email = data["email"]
             user_find["password"] = password
+            user_find["email"] = email
             user_list.append(user_find)
             return {"message": "User updated"}
         return {"message": "User not found"}, 404
@@ -84,4 +92,5 @@ class UserList(Resource):
         """
         get all users
         """
+
         return user_list

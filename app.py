@@ -1,5 +1,5 @@
-from flask import Flask, request
-from flask_restful import Api, Resource
+from flask import Flask
+from flask_restful import Api
 
 from resource.hello import HelloWorld
 from resource.user import User, UserList

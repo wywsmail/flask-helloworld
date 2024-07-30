@@ -17,7 +17,7 @@ from .resource.user import User, UserList
 def create_app():
     app = Flask(__name__)
     api = Api(app)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///demo.db"
+    # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///demo.db"
 
     # db.init_app(app)
     # migrate = Migrate(app, db)

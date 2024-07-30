@@ -14,7 +14,7 @@ from .resource.user import User, UserList
 # from .restdemo.model.user import User as UserModel
 
 
-def create_app():
+def create_app(environ, start_response):
     app = Flask(__name__)
     api = Api(app)
     # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///demo.db"
@@ -25,7 +25,7 @@ def create_app():
     api.add_resource(HelloWorld, "/")
     api.add_resource(User, "/user/<string:username>")
     api.add_resource(UserList, "/users")
-    return app
+    return app(environ, start_response)
 
 
 if __name__ == "__main__":

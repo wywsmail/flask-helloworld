@@ -1,2 +1,2 @@
-web: gunicorn restdemo:create_app --preload
+web: gunicorn restdemo.app:create_app
 

@@ -1,2 +1,2 @@
-web: gunicorn restdemo.app:create_app
+web: gunicorn app:app
 

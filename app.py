@@ -7,14 +7,14 @@ from flask_restful import Api
 
 # db = SQLAlchemy()
 
-from .resource.hello import HelloWorld
-from .resource.user import User, UserList
+from .restdemo.resource.hello import HelloWorld
+from .restdemo.resource.user import User, UserList
 
 
 # from .restdemo.model.user import User as UserModel
 
 
-def create_app(environ, start_response):
+def create_app():
     app = Flask(__name__)
     api = Api(app)
     # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///demo.db"
@@ -25,7 +25,7 @@ def create_app(environ, start_response):
     api.add_resource(HelloWorld, "/")
     api.add_resource(User, "/user/<string:username>")
     api.add_resource(UserList, "/users")
-    return app(environ, start_response)
+    return app
 
 
 if __name__ == "__main__":

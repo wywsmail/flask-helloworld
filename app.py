@@ -7,8 +7,8 @@ from flask_restful import Api
 
 # db = SQLAlchemy()
 
-from .restdemo.resource.hello import HelloWorld
-from .restdemo.resource.user import User, UserList
+from restdemo.resource.hello import HelloWorld
+from restdemo.resource.user import User, UserList
 
 
 # from .restdemo.model.user import User as UserModel

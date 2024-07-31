@@ -14,20 +14,32 @@ from .restdemo.resource.user import User, UserList
 # from .restdemo.model.user import User as UserModel
 
 
-def create_app():
-    app = Flask(__name__)
-    api = Api(app)
-    # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///demo.db"
+# def create_app():
+#     app = Flask(__name__)
+#     api = Api(app)
+#     # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///demo.db"
 
-    # db.init_app(app)
-    # migrate = Migrate(app, db)
+#     # db.init_app(app)
+#     # migrate = Migrate(app, db)
 
-    api.add_resource(HelloWorld, "/")
-    api.add_resource(User, "/user/<string:username>")
-    api.add_resource(UserList, "/users")
-    return app
+#     api.add_resource(HelloWorld, "/")
+#     api.add_resource(User, "/user/<string:username>")
+#     api.add_resource(UserList, "/users")
+#     return app
+
+
+app = Flask(__name__)
+api = Api(app)
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///demo.db"
+
+# db.init_app(app)
+# migrate = Migrate(app, db)
+
+api.add_resource(HelloWorld, "/")
+api.add_resource(User, "/user/<string:username>")
+api.add_resource(UserList, "/users")
 
 
 if __name__ == "__main__":
-    app = create_app()
+    # app = create_app()
     app.run()
